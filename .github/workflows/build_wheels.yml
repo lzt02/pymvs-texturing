@@ -1,0 +1,32 @@
+name: Build Linux wheels only
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:          
+
+jobs:
+  build_linux_wheels:
+    name: Build manylinux wheels
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.19
+        env:
+          
+          CIBW_BUILD: cp3{8,9,10,11,12}-manylinux_x86_64
+          CIBW_SKIP: "*-musllinux*"
+          
+          CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-wheels
+          path: ./wheelhouse/*.whl
