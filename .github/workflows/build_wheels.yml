@@ -7,27 +7,33 @@ on:
   workflow_dispatch:          
 
 jobs:
-  build_linux_wheels:
-    name: Build manylinux wheels
-    runs-on: ubuntu-latest
+  build_wheels:
+    name: Build ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Set up MSVC (Windows only)
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.19
         env:
           
-          CIBW_BUILD: cp3{8,9,10,11,12}-manylinux_x86_64
-          
+          CIBW_BUILD: cp39-{manylinux,win,macos}*          
             
-          CIBW_SKIP: "*-musllinux*"
+          CIBW_SKIP: "*-win32 *-manylinux_i686 *-musllinux*"
           
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: linux-wheels
+          name: wheels-${{ matrix.os }}
           path: ./wheelhouse/*.whl
