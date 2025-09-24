@@ -1,5 +1,4 @@
-name: Build Linux wheels only
-
+name: Build wheels
 on:
   push:
     branches: [ main ]

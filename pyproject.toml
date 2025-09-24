@@ -7,10 +7,10 @@ name = "pymvs-texturing"
 version = "0.1.0"
 description = "Python bindings for MVS-Texturing"
 readme = "README.md"
-authors = [{ name="Your Name", email="you@example.com" }]
+authors = [{ name="Ziteng Lu", email="1367652538@qq.com" }]
 license = {file = "LICENSE"}
 requires-python = ">=3.8"
-dependencies = ["numpy"]
+dependencies = [""]
 classifiers = [
   "License :: OSI Approved :: BSD License",
   "Programming Language :: Python :: 3 :: Only",
@@ -18,7 +18,6 @@ classifiers = [
 
 [tool.scikit-build]
 wheel.expand-macos-universal-tags = true
-cmake.args = ["-DTBB_DIR=/opt/oneapi-tbb-2021.12.0/lib/cmake/tbb"]
 
 
 [tool.cibuildwheel]
@@ -27,7 +26,7 @@ archs = ["auto64"]
 test-command = "python -c \"import pymvs_texturing; print(pymvs_texturing.__name__)\""
 
 [tool.cibuildwheel.linux]
-before-all = "bash {project}/package/install-mvs-texturing-linux.sh && ls -l external/mvs-texturing/build/libs/tex/libtex.a"
+before-all = "bash {project}/package/install-mvs-texturing-linux.sh"
 
 [tool.cibuildwheel.macos]
 before-all = "{project}/package/install-mvs-texturing-macos.sh"
