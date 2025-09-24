@@ -9,5 +9,6 @@ cd "$EXT"
 git clone https://github.com/nmoehrle/mvs-texturing.git
 cd mvs-texturing
 mkdir -p build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake .. -DCMAKE_BUILD_TYPE=Release \
+         -DCMAKE_PREFIX_PATH=/opt/oneapi-tbb-2021.12.0
 make -j$(nproc)
