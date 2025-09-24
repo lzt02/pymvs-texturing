@@ -27,7 +27,7 @@ archs = ["auto64"]
 test-command = "python -c \"import pymvs_texturing; print(pymvs_texturing.__name__)\""
 
 [tool.cibuildwheel.linux]
-before-all = "{project}/package/install-mvs-texturing-linux.sh"
+before-all = "bash {project}/package/install-mvs-texturing-linux.sh && ls -l external/mvs-texturing/build/libs/tex/libtex.a"
 
 [tool.cibuildwheel.macos]
 before-all = "{project}/package/install-mvs-texturing-macos.sh"
