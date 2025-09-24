@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-set -ex      
+set -ex   
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 TBB_HOME="$REPO_ROOT"
-mkdir -p "$TBB_HOME"
-curl -L https://github.com/oneapi-src/oneTBB/releases/download/v2021.12.0/oneapi-tbb-2021.12.0-mac.tgz | tar -xz -C "$TBB_HOME"
+mkdir -p "$TBB_HOME"   
+curl -L https://github.com/oneapi-src/oneTBB/releases/download/v2021.12.0/oneapi-tbb-2021.12.0-lin.tgz | tar -xz -C "$TBB_HOME"
 dnf install -y libpng-devel zlib-devel libjpeg-devel libtiff-devel
 export CMAKE_PREFIX_PATH="$TBB_HOME/oneapi-tbb-2021.12.0":$CMAKE_PREFIX_PATH
 ROOT="$(dirname "$0")/.."

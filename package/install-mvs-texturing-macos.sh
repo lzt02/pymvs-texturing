@@ -18,5 +18,7 @@ mkdir -p build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release \
          -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
          -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
-         -DTBB_DIR="$TBB_HOME/oneapi-tbb-2021.12.0/lib/cmake/tbb"
+         -DTBB_DIR="$TBB_HOME/oneapi-tbb-2021.12.0/lib/cmake/tbb" \
+         -DTBB_FIND_RELEASE_ONLY=ON
+
 make -j$(sysctl -n hw.ncpu)
