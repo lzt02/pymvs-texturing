@@ -33,6 +33,8 @@ before-all = "bash {project}/package/install-mvs-texturing-linux.sh"
 before-all = "{project}/package/install-mvs-texturing-macos.sh"
 
 [tool.cibuildwheel.windows]
-before-all = "powershell -ExecutionPolicy Bypass -File {project}/package/install-mvs-texturing-windows.ps1"
-before-build = "pip install delvewheel"
+before-build = """
+powershell -File {project}/package/install-mvs-texturing-windows.ps1
+pip install delvewheel
+"""
 
