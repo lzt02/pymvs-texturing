@@ -23,7 +23,13 @@ Set-Location mvs-texturing
 New-Item -ItemType Directory -Force -Path build
 Set-Location build
 cmake .. -G "Visual Studio 17 2022" -A x64 `
-         -DCMAKE_BUILD_TYPE=Release `
-         -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake `
-         -DTBB_DIR="$tbbCMake"
+  -DCMAKE_BUILD_TYPE=Release `
+  -DCMAKE_POSITION_INDEPENDENT_CODE=ON `
+  -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake `
+  -DVCPKG_TARGET_TRIPLET=x64-windows `
+  -DZLIB_ROOT=C:/vcpkg/installed/x64-windows `
+  -DPNG_ROOT=C:/vcpkg/installed/x64-windows `
+  -DJPEG_ROOT=C:/vcpkg/installed/x64-windows `
+  -DTIFF_ROOT=C:/vcpkg/installed/x64-windows `
+  -DTBB_DIR="$tbbCMake"
 cmake --build . --config Release -v
