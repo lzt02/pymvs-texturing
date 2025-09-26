@@ -31,5 +31,7 @@ cmake .. -G "Visual Studio 17 2022" -A x64 `
   -DPNG_ROOT=C:/vcpkg/installed/x64-windows `
   -DJPEG_ROOT=C:/vcpkg/installed/x64-windows `
   -DTIFF_ROOT=C:/vcpkg/installed/x64-windows `
+  -DCPPFLAGS="-I$C:/vcpkg/installed/x64-windows/include" `
+  -DLDLIBS="-L$C:/vcpkg/installed/x64-windows/lib -lpng16 -lzlib -ljpeg -ltiff" `
   -DTBB_DIR="$tbbCMake"
 cmake --build . --config Release -v
